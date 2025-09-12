@@ -1,0 +1,437 @@
+/* Galaxy Theme CSS for Register Page - Matching Login */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0f;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Galaxy Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top left, #1e1b4b 0%, transparent 50%),
+        radial-gradient(ellipse at top right, #312e81 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, #4c1d95 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, #581c87 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #16213e 60%, #0f0a1e 100%);
+    z-index: -3;
+}
+
+/* Animated Stars */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+        radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 240px 20px, #ffffff, transparent),
+        radial-gradient(1px 1px at 280px 60px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 320px 100px, #ffffff, transparent),
+        radial-gradient(2px 2px at 360px 40px, rgba(255,255,255,0.8), transparent);
+    background-repeat: repeat;
+    background-size: 400px 200px;
+    animation: sparkle 4s linear infinite;
+    z-index: -2;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+
+
+.login-container {
+    background: linear-gradient(135deg, 
+        rgba(30, 27, 75, 0.9) 0%, 
+        rgba(49, 46, 129, 0.7) 50%, 
+        rgba(76, 29, 149, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    padding: 50px 40px;
+    width: 420px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 80px rgba(147, 51, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: slideInScale 1s ease-out;
+}
+
+@keyframes slideInScale {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
+    to { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)); }
+}
+
+.subtitle {
+    text-align: center;
+    color: #c4b5fd;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 1s ease-out 0.3s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+label {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e0e7ff;
+    margin-bottom: 8px;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    padding: 14px 16px;
+    margin-bottom: 5px;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    border-radius: 10px;
+    background: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.8) 0%, 
+        rgba(30, 27, 75, 0.6) 100%);
+    color: #ffffff;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #a855f7;
+    box-shadow: 
+        0 0 0 3px rgba(168, 85, 247, 0.2),
+        0 0 20px rgba(168, 85, 247, 0.3);
+    background: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.9) 0%, 
+        rgba(30, 27, 75, 0.8) 100%);
+    transform: translateY(-2px);
+}
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #94a3b8;
+}
+
+button[type="submit"] {
+    margin-top: 25px;
+    padding: 16px;
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    }
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+button[type="submit"]:hover {
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(168, 85, 247, 0.6);
+}
+
+button[type="submit"]:active {
+    transform: translateY(-1px);
+}
+
+.error {
+    margin-top: 15px;
+    color: #fca5a5;
+    font-size: 14px;
+    text-align: center;
+    background: linear-gradient(135deg, 
+        rgba(239, 68, 68, 0.1) 0%, 
+        rgba(220, 38, 38, 0.1) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #c4b5fd;
+    animation: fadeIn 1s ease-out 1s both;
+}
+
+.login-link a {
+    color: #a855f7;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a855f7, #3b82f6);
+    transition: width 0.3s ease;
+}
+
+.login-link a:hover::after {
+    width: 100%;
+}
+
+.login-link a:hover {
+    color: #3b82f6;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Continue as Guest Button */
+.guest-btn {
+    display: block;
+    text-align: center;
+    margin: 20px auto 0;
+    padding: 14px 20px;
+    width: 80%;
+    max-width: 300px;
+    background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    position: relative;
+    overflow: hidden;
+    animation: buttonPulse 2s infinite;
+}
+
+.guest-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.guest-btn:hover::before {
+    left: 100%;
+}
+
+.guest-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    background: rgba(168, 85, 247, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.particle-1 {
+    width: 4px;
+    height: 4px;
+    top: 20%;
+    left: 10%;
+    animation: floatParticle 6s infinite ease-in-out;
+}
+
+.particle-2 {
+    width: 6px;
+    height: 6px;
+    top: 60%;
+    left: 85%;
+    animation: floatParticle 8s infinite ease-in-out 2s;
+}
+
+.particle-3 {
+    width: 3px;
+    height: 3px;
+    top: 80%;
+    left: 15%;
+    animation: floatParticle 7s infinite ease-in-out 4s;
+}
+
+.particle-4 {
+    width: 5px;
+    height: 5px;
+    top: 35%;
+    left: 88%;
+    animation: floatParticle 9s infinite ease-in-out 1s;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        max-width: 380px;
+        padding: 40px 30px;
+        margin: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    input[type="password"] {
+        padding: 12px 14px;
+    }
+
+    button[type="submit"] {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}

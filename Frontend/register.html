@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/register.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Register</h2>
+        <p class="subtitle">Join our gaming community</p>
+        
+        <form method="POST" action="/register">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+        
+        {{if .Error}}
+            <div class="error">{{.Error}}</div>
+        {{end}}
+
+        <div class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
+
+        <!-- Continue as Guest Button -->
+        <div class="guest-link">
+            <a href="/homePage" class="guest-btn">Continue as Guest</a>
+        </div>
+        
+        <!-- Floating particles -->
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+    </div>
+</body>
+</html>

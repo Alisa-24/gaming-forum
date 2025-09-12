@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/static/login.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #0a192f); /* Dark blue gradient */
+      color: #e0e6ed;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background: #1c2b3a;
+      padding: 40px 30px;
+      width: 360px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+    }
+
+    h2 {
+      text-align: center;
+      color: #e0e6ed;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cfd8e3;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #324c66;
+      border-radius: 6px;
+      background-color: #0f1f33;
+      color: #f0f4f8;
+      outline: none;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px;
+      background-color: #3a86ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .error {
+      margin-top: 15px;
+      color: #ff6b6b;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #4dabf7;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" action="/login">
+      <label for="identifier">Username or Email</label>
+      <input type="text" name="identifier" id="identifier" required />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    {{if .Error}}
+      <p style="color:red">{{.Error}}</p>
+    {{end}}
+
+    <div class="register-link">
+      Don’t have an account? <a href="/register">Register here</a>
+    </div>
+  </div>
+</body>
+</html>
+      

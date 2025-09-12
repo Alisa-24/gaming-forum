@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Username}} - Profile - Galaxy Forum</title>
+  <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+  <div class="profile-container">
+
+    <!-- Navigation -->
+    <div class="nav-section">
+      <a href="/homePage" class="back-btn">← Back to Forum</a>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-info">
+        <div class="avatar">{{slice .Username 0 1}}</div>
+        <div class="user-details">
+          <h1>{{.Username}}</h1>
+          <div class="user-stats">
+            <div class="stat-item">
+              <span class="stat-number">{{len .CreatedPosts}}</span>
+              <span class="stat-label">Posts Created</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{{len .LikedPosts}}</span>
+              <span class="stat-label">Posts Liked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Action Links -->
+    {{if .UserID}}
+    <div class="profile-actions">
+      <a href="#myposts" class="profile-action-btn">👤 My Posts</a>
+      <a href="#mylikes" class="profile-action-btn">❤️ My Likes</a>
+    </div>
+    {{end}}
+
+    <!-- My Posts Section -->
+    <div id="myposts" class="section-header">
+      <h2 class="section-title">My Posts</h2>
+    </div>
+
+    <div class="posts-section">
+      {{if .CreatedPosts}}
+      <div class="posts-grid">
+        {{range .CreatedPosts}}
+        <div class="post-card">
+          <a href="/post?id={{.ID}}" class="post-card-link">
+            <div class="post-categories">
+              {{range .Categories}}<span class="post-category">{{.}}</span>{{end}}
+            </div>
+            <div class="post-title">{{.Title}}</div>
+            <div class="post-excerpt">
+              {{if gt (len .Content) 150}}{{slice .Content 0 150}}...{{else}}{{.Content}}{{end}}
+            </div>
+            <div class="post-meta"><span class="post-date">{{.CreatedAtFormatted}}</span></div>
+            <div class="post-stats">
+              <div class="stat">👍 {{.Likes}}</div>
+              <div class="stat">👎 {{.Dislikes}}</div>
+            </div>
+          </a>
+        </div>
+        {{end}}
+      </div>
+      {{else}}
+      <div class="no-posts">
+        <div class="no-posts-icon">📝</div>
+        <h3>No Posts Yet</h3>
+        <p>You haven't created any posts yet. <a href="/create-post">Create your first post!</a></p>
+      </div>
+      {{end}}
+    </div>
+
+    <!-- Liked Posts Section -->
+    <div id="mylikes" class="section-header">
+      <h2 class="section-title">Liked Posts</h2>
+    </div>
+
+    <div class="posts-section">
+      {{if .LikedPosts}}
+      <div class="posts-grid">
+        {{range .LikedPosts}}
+        <div class="post-card">
+          <a href="/post?id={{.ID}}" class="post-card-link">
+            <div class="post-categories">
+              {{range .Categories}}<span class="post-category">{{.}}</span>{{end}}
+            </div>
+            <div class="post-title">{{.Title}}</div>
+            <div class="post-excerpt">
+              {{if gt (len .Content) 150}}{{slice .Content 0 150}}...{{else}}{{.Content}}{{end}}
+            </div>
+            <div class="post-meta"><span class="post-date">{{.CreatedAtFormatted}}</span></div>
+            <div class="post-stats">
+              <div class="stat">👍 {{.Likes}}</div>
+              <div class="stat">👎 {{.Dislikes}}</div>
+            </div>
+          </a>
+        </div>
+        {{end}}
+      </div>
+      {{else}}
+      <div class="no-posts">
+        <div class="no-posts-icon">❤️</div>
+        <h3>No Liked Posts</h3>
+        <p>You haven't liked any posts yet. Explore the forum to find interesting posts!</p>
+      </div>
+      {{end}}
+    </div>
+
+  </div>
+</body>
+</html>

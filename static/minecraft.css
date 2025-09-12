@@ -1,0 +1,652 @@
+/* Minecraft Category CSS - Blocky Pixel Theme */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #4a7c59;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Minecraft Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(74, 124, 89, 0.3), rgba(139, 69, 19, 0.3)),
+        url('/backgrounds/minecraftwall2.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -3;
+    image-rendering: pixelated;
+}
+
+/* Floating block particles effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(8px 8px at 50px 80px, rgba(89, 125, 39, 0.6), transparent),
+        radial-gradient(8px 8px at 150px 40px, rgba(139, 69, 19, 0.4), transparent),
+        radial-gradient(8px 8px at 250px 120px, rgba(74, 124, 89, 0.5), transparent),
+        radial-gradient(8px 8px at 350px 60px, rgba(89, 125, 39, 0.3), transparent);
+    background-repeat: repeat;
+    background-size: 400px 200px;
+    animation: blocksFloat 20s linear infinite;
+    z-index: -2;
+}
+
+@keyframes blocksFloat {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+/* Navigation Bar - Made Smaller */
+.navbar {
+    background: linear-gradient(135deg, 
+        rgba(89, 125, 39, 0.95) 0%, 
+        rgba(139, 69, 19, 0.90) 50%, 
+        rgba(74, 124, 89, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 4px solid rgba(139, 69, 19, 0.8);
+    border-image: repeating-linear-gradient(90deg, #8b4513 0px, #8b4513 8px, #a0522d 8px, #a0522d 16px) 4;
+    padding: 10px 0; /* Reduced from 15px */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Reduced from 30px */
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Reduced from 30px */
+    flex: 1;
+}
+
+.logo {
+    font-size: 1.5rem; /* Reduced from 1.8rem */
+    font-weight: 900;
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    font-family: 'Courier New', monospace;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.8));
+}
+
+.nav-categories {
+    display: flex;
+    align-items: center;
+    gap: 3px; /* Reduced from 5px */
+}
+
+.nav-btn {
+    padding: 8px 12px; /* Reduced from 10px 16px */
+    border-radius: 0px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: rgba(139, 69, 19, 0.3);
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+
+.nav-btn.active {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.6) 0%, rgba(139, 195, 74, 0.6) 100%);
+    color: #ffffff;
+    border: 2px solid rgba(76, 175, 80, 0.8);
+    box-shadow: inset 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.4) 0%, rgba(139, 195, 74, 0.4) 100%);
+    color: #ffffff;
+    border: 2px solid rgba(76, 175, 80, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Added gap between buttons */
+}
+
+/* Enhanced Profile Button */
+.profile-btn {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.6) 0%, rgba(160, 82, 45, 0.5) 100%);
+    color: #4CAF50;
+    padding: 10px 16px; /* Reduced from 12px 20px */
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.9rem; /* Reduced from 0.95rem */
+    transition: all 0.3s ease;
+    border: 2px solid rgba(139, 69, 19, 0.7);
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.profile-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.8) 0%, rgba(160, 82, 45, 0.7) 100%);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+    border-color: rgba(76, 175, 80, 0.8);
+    color: #ffffff;
+}
+
+.create-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+    color: #2E7D32;
+    padding: 10px 20px; /* Reduced from 12px 24px */
+    border-radius: 0px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.9rem; /* Reduced from 0.95rem */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border: 2px solid #388E3C;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    border: 2px solid #4CAF50;
+}
+
+/* Enhanced Logout Button */
+.logout-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #B22222 100%);
+    color: #ffffff;
+    padding: 10px 16px; /* Reduced from 12px 20px */
+    border: 2px solid rgba(220, 20, 60, 0.7);
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 0.9rem; /* Reduced from 0.95rem */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.2);
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #A0522D 0%, #FF4500 50%, #8B4513 100%);
+    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
+    border-color: rgba(255, 165, 0, 0.6);
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding: 40px 0;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #A5D6A7;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Posts Container - One Post Per Row like Souls */
+.posts-container {
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.post-card {
+    background: linear-gradient(135deg, 
+        rgba(89, 125, 39, 0.9) 0%, 
+        rgba(139, 69, 19, 0.8) 50%, 
+        rgba(74, 124, 89, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    border: 4px solid rgba(139, 69, 19, 0.6);
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    padding: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(139, 69, 19, 0.8);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2E7D32;
+    font-weight: 900;
+    font-size: 0.8rem;
+    border: 2px solid rgba(139, 69, 19, 0.6);
+    font-family: 'Courier New', monospace;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.author-name {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.post-time {
+    font-size: 0.8rem;
+    color: #A5D6A7;
+    font-family: 'Courier New', monospace;
+}
+
+.post-category {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.6) 0%, rgba(160, 82, 45, 0.6) 100%);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 2px solid rgba(139, 69, 19, 0.8);
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.post-content {
+    margin-bottom: 20px;
+}
+
+.post-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.post-text {
+    color: #E8F5E8;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap; /* This preserves newlines and wrapping */
+}
+
+.post-actions {
+    display: flex;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(139, 69, 19, 0.4);
+}
+
+.post-link {
+    text-decoration: none;
+    color: inherit; 
+    display: block; 
+}
+
+.post-link:hover {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 69, 19, 0.4);
+    border: 2px solid rgba(139, 69, 19, 0.6);
+    color: #ffffff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 0px; /* Keep rectangular for Minecraft theme */
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.action-btn:hover {
+    background: rgba(139, 69, 19, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+    border-color: rgba(139, 69, 19, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.like-btn {
+    background: transparent; /* Changed from rgba(76, 175, 80, 0.3) to transparent */
+    border-color: rgba(76, 175, 80, 0.6); /* Changed to green border */
+}
+
+.like-btn:hover {
+    background: rgba(76, 175, 80, 0.6);
+    color: #ffffff;
+    border-color: rgba(76, 175, 80, 0.8);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.like-btn .action-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('/backgrounds/diamond.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+}
+
+.dislike-btn {
+    background: rgba(121, 85, 72, 0.3);
+    border-color: rgba(121, 85, 72, 0.6);
+}
+
+.dislike-btn:hover {
+    background: rgba(121, 85, 72, 0.6);
+    color: #ffffff;
+    border-color: rgba(121, 85, 72, 0.8);
+    box-shadow: 0 4px 8px rgba(121, 85, 72, 0.3);
+}
+
+.dislike-btn .action-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('/backgrounds/dirt.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+}
+
+.comment-btn:hover {
+    background: rgba(89, 125, 39, 0.6);
+    color: #ffffff;
+    border-color: rgba(89, 125, 39, 0.8);
+    box-shadow: 0 4px 8px rgba(89, 125, 39, 0.3);
+}
+
+/* Active state for like button */
+.action-btn.like-btn.active {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border: 2px solid #45a049 !important;
+}
+
+.action-btn.like-btn.active .action-icon {
+    animation: pulse 1.5s infinite;
+}
+
+/* Active state for dislike button */
+.action-btn.dislike-btn.active {
+    background-color: #f44336 !important;
+    color: white !important;
+    border: 2px solid #da190b !important;
+}
+
+.action-btn.dislike-btn.active .action-icon {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Pulse animation for active like */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Shake animation for active dislike */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    75% {
+        transform: translateX(2px);
+    }
+}
+
+.action-icon {
+    font-size: 1rem;
+    position: relative;
+}
+
+.action-count {
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+}
+
+.post-actions form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+/* No posts message */
+.no-posts {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, 
+        rgba(89, 125, 39, 0.9) 0%, 
+        rgba(139, 69, 19, 0.8) 50%, 
+        rgba(74, 124, 89, 0.9) 100%);
+    border: 4px solid rgba(139, 69, 19, 0.6);
+    border-radius: 0px;
+    margin: 20px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.no-posts h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.no-posts p {
+    font-size: 1rem;
+    color: #A5D6A7;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 15px;
+        gap: 15px; /* Reduced gap */
+    }
+    
+    .nav-categories {
+        gap: 2px;
+    }
+    
+    .nav-btn {
+        padding: 6px 10px; /* Further reduced */
+        font-size: 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.4rem; /* Further reduced */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap */
+        padding: 10px 15px; /* Reduced padding */
+    }
+    
+    .nav-left {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap */
+        align-items: center;
+    }
+    
+    .nav-categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .page-title {
+        font-size: 2.2rem;
+    }
+    
+    .content-container {
+        padding: 0 15px;
+    }
+    
+    .post-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post - Galaxy Theme</title>
+    <link rel="stylesheet" href="/static/createpost.css" />
+  </head>
+  <body>
+    <!-- Floating particles -->
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+
+    <div class="login-container">
+      <h2>Create a Post</h2>
+      <p class="subtitle">Share your thoughts with the community</p>
+
+      <form action="/createpost" method="POST">
+        <!-- Title -->
+        <label for="title">Post Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter your post title"
+          required
+        />
+
+        <!-- Content -->
+        <label for="content">Content</label>
+        <textarea
+          id="content"
+          name="content"
+          placeholder="Write your post content..."
+          required
+        ></textarea>
+
+        <!-- Categories -->
+        <label>Categories</label>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="category[]" value="minecraft" />
+            Minecraft
+          </label>
+          <label>
+            <input type="checkbox" name="category[]" value="online games" />
+            Online Games
+          </label>
+          <label>
+            <input type="checkbox" name="category[]" value="souls games" />
+            Souls Games
+          </label>
+          <label>
+            <input type="checkbox" name="category[]" value="general" />
+            General
+          </label>
+          <label>
+            <input type="checkbox" name="category[]" value="story games" />
+            Story Games
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit">Post</button>
+
+        <!-- Error message -->
+        {{if .Error}}
+        <p class="error-message" style="color: #ff4d4d">{{.Error}}</p>
+        {{end}}
+      </form>
+      <div class="register-link">
+        <p><a href="/homePage">← Back to Home</a></p>
+      </div>
+    </div>
+  </body>
+</html>

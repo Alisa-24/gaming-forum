@@ -49,3 +49,11 @@ The platform allows players to connect through posts, comments, likes, and priva
    ```sh
    git clone https://github.com/yourusername/gaming-forum.git
    cd gaming-forum
+
+2. Run the backend:
+   ```sh
+   go run main.go
+   
+3. Open your browser and visit:
+   ```sh
+   http://localhost:8888

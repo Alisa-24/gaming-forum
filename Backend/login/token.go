@@ -1,15 +1,13 @@
 package login
 
 import (
-	"crypto/rand"
-	"encoding/hex"
+	"github.com/google/uuid"
 )
 
 func GenerateToken() (string, error) {
-	byteToken := make([]byte, 32) // Generate a 32-byte token
-	_, err := rand.Read(byteToken)
+	token, err := uuid.NewRandom()
 	if err != nil {
-		return "", err // Return error if token generation fails
+		return "", err
 	}
-	return hex.EncodeToString(byteToken), nil // Convert byte slice to hex string
+	return token.String(), nil
 }

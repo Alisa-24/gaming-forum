@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub Forum</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Left side - Logo and categories -->
+            <div class="nav-left">
+                <div class="logo">
+                    🎮 GameHub
+                </div>
+
+                <div class="nav-categories">
+                    <a href="/homePage" class="nav-btn home-btn active">All Posts</a>
+                    <a href="/category/general" class="nav-btn category-btn">💬 General</a>
+                    <a href="/category/online" class="nav-btn category-btn">🌐 Online</a>
+                    <a href="/category/story" class="nav-btn category-btn">📖 Story</a>
+                    <a href="/category/souls" class="nav-btn category-btn">⚔️ Souls</a>
+                    <a href="/category/minecraft" class="nav-btn category-btn">⛏️ Minecraft</a>
+                    <a href="/about" class="nav-btn category-btn">ℹ️ About</a>
+                </div>
+            </div>
+
+            <!-- Right side - Authentication buttons -->
+            <div class="nav-right">
+                {{if .UserID}}
+                <!-- Logged in user -->
+                <a href="/profile?id={{.UserID}}" class="profile-btn">👤</a>
+                <a href="/createpost" class="create-btn">✨ Create Post</a>
+                <form method="POST" action="/logout" class="logout-form">
+                    <button type="submit" class="logout-btn">🚪 Logout</button>
+                </form>
+                {{else}}
+                <!-- Guest user -->
+                <a href="/register" class="register-btn">📝 Register</a>
+                <a href="/login" class="login-btn">🔑 Login</a>
+                {{end}}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Header -->
+            <div class="content-header">
+                <h1 class="page-title">{{if .FilterApplied}}Filtered Posts{{else}}All Posts{{end}}</h1>
+                <p class="page-subtitle">{{if .FilterApplied}}Your customized gaming feed{{else}}Discover all
+                    discussions in our gaming community{{end}}</p>
+            </div>
+
+            <!-- Multi-Select Category Filter Section -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h2 class="filter-title">🎮 Filter Posts</h2>
+                    <p class="filter-subtitle">Select categories to customize your feed</p>
+                </div>
+
+                <form method="GET" action="/homePage" class="filter-form">
+                    <!-- Filter Options -->
+                    <div class="filter-options">
+                        <div class="filter-row first-row">
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="general" name="categories" value="general" {{range
+                                    .SelectedCategories}}{{if eq . "general" }}checked{{end}}{{end}}>
+                                <label for="general" class="filter-label">
+                                    <span class="filter-icon">💬</span>
+                                    General
+                                </label>
+                            </div>
+
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="online" name="categories" value="online games" {{range
+                                    .SelectedCategories}}{{if eq . "online games" }}checked{{end}}{{end}}>
+                                <label for="online" class="filter-label">
+                                    <span class="filter-icon">🌐</span>
+                                    Online Games
+                                </label>
+                            </div>
+
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="story" name="categories" value="story games" {{range
+                                    .SelectedCategories}}{{if eq . "story games" }}checked{{end}}{{end}}>
+                                <label for="story" class="filter-label">
+                                    <span class="filter-icon">📖</span>
+                                    Story Games
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter-row second-row">
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="souls" name="categories" value="souls games" {{range
+                                    .SelectedCategories}}{{if eq . "souls games" }}checked{{end}}{{end}}>
+                                <label for="souls" class="filter-label">
+                                    <span class="filter-icon">⚔️</span>
+                                    Souls Games
+                                </label>
+                            </div>
+
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="minecraft" name="categories" value="minecraft" {{range
+                                    .SelectedCategories}}{{if eq . "minecraft" }}checked{{end}}{{end}}>
+                                <label for="minecraft" class="filter-label">
+                                    <span class="filter-icon">⛏️</span>
+                                    Minecraft
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Actions -->
+                    <div class="filter-actions">
+                        <button type="submit" class="apply-filter-btn">
+                            🔍 Apply Filters
+                        </button>
+
+                        <a href="/homePage" class="clear-all-btn">
+                            <span class="filter-icon">🔄</span>
+                            Show All Posts
+                        </a>
+                    </div>
+
+                    <!-- Profile Action Buttons (only show for logged in users) -->
+                    {{if .UserID}}
+                    <div class="profile-actions">
+                        <a href="/profile?id={{.UserID}}#mylikes" class="profile-action-btn">
+                            <span class="filter-icon">❤️</span>
+                            Liked Posts
+                        </a>
+
+                        <a href="/profile?id={{.UserID}}#myposts" class="profile-action-btn">
+                            <span class="filter-icon">👤</span>
+                            Created Posts
+                        </a>
+                    </div>
+                    {{end}}
+
+                    <!-- Active Filters Display -->
+                    {{if .SelectedCategories}}
+                    <div class="active-filters">
+                        <p class="active-filters-title">Active Filters:</p>
+                        <div class="active-filters-list">
+                            {{range .SelectedCategories}}
+                            <span class="active-filter-tag">
+                                {{if eq . "general"}}💬 General{{end}}
+                                {{if eq . "online games"}}🌐 Online Games{{end}}
+                                {{if eq . "story games"}}📖 Story Games{{end}}
+                                {{if eq . "souls games"}}⚔️ Souls Games{{end}}
+                                {{if eq . "minecraft"}}⛏️ Minecraft{{end}}
+                            </span>
+                            {{end}}
+                        </div>
+                    </div>
+                    {{end}}
+                </form>
+            </div>
+
+            <!-- Posts Count Display -->
+            {{if .Posts}}
+            <div class="posts-count">
+                <p class="posts-count-text">
+                    Showing <span class="posts-count-number">{{len .Posts}}</span>
+                    {{if eq (len .Posts) 1}}post{{else}}posts{{end}}
+                    {{if .SelectedCategories}} matching your filters{{end}}
+                </p>
+            </div>
+            {{end}}
+
+            <div class="posts-grid">
+                {{if .Posts}}
+                {{range .Posts}}
+                <article class="post-card">
+                    <a href="/post?id={{.ID}}" class="post-link">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="author-avatar">{{upper .Username}}</div>
+                                <div class="author-info">
+                                    <span class="author-name">{{.Username}}</span>
+                                    <span class="post-time">{{.CreatedAt}}</span>
+                                </div>
+                            </div>
+                            <div class="post-categories">
+                                {{range .Categories}}
+                                <span class="post-category">{{.}}</span>
+                                {{end}}
+                            </div>
+                        </div>
+
+                        <div class="post-content">
+                            <h3 class="post-title">{{.Title}}</h3>
+                            <p class="post-text">
+                                {{if gt (len .Content) 150}}{{slice .Content 0 150}}...{{else}}{{.Content}}{{end}}
+                            </p>
+                        </div>
+                    </a>
+
+                    <div class="post-actions">
+                        {{if $.UserID}}
+                        <!-- Show like/dislike buttons only for logged in users -->
+                        <form method="POST" action="/post/like" style="display:inline">
+                            <input type="hidden" name="post_id" value="{{.ID}}" />
+                            <input type="hidden" name="is_like" value="1" />
+                            <button type="submit"
+                                class="action-btn like-btn {{if eq (ptrVal .UserLiked) 1}}active{{end}}">
+                                👍 <span class="action-count">{{.Likes}}</span>
+                            </button>
+                        </form>
+
+                        <form method="POST" action="/post/like" style="display:inline">
+                            <input type="hidden" name="post_id" value="{{.ID}}" />
+                            <input type="hidden" name="is_like" value="0" />
+                            <button type="submit"
+                                class="action-btn dislike-btn {{if eq (ptrVal .UserLiked) 0}}active{{end}}">
+                                👎 <span class="action-count">{{.Dislikes}}</span>
+                            </button>
+                        </form>
+                        {{else}}
+                        <!-- Show read-only counts for guests -->
+                        <div class="action-btn like-btn disabled">
+                            👍 <span class="action-count">{{.Likes}}</span>
+                        </div>
+                        <div class="action-btn dislike-btn disabled">
+                            👎 <span class="action-count">{{.Dislikes}}</span>
+                        </div>
+                        {{end}}
+
+                        <a href="/post?id={{.ID}}" class="action-btn comment-btn">
+                            💬 <span class="action-count">{{.CommentsCount}}</span>
+                        </a>
+                    </div>
+                </article>
+                {{end}}
+                {{else}}
+                <div class="no-posts">
+                    {{if .SelectedCategories}}
+                    <h3>No posts match your filters</h3>
+                    <p>Try adjusting your filter selection or clear all filters to see more posts.</p>
+                    <a href="/homePage" class="create-first-btn">🔄 Show All Posts</a>
+                    {{else}}
+                    <h3>No posts found</h3>
+                    <p>Be the first to create a post!</p>
+                    {{if .UserID}}
+                    <a href="/createpost" class="create-first-btn">✨ Create the First Post</a>
+                    {{else}}
+                    <a href="/register" class="create-first-btn">📝 Register to Create Posts</a>
+                    {{end}}
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -211,32 +211,32 @@ func renderFilteredPosts(w http.ResponseWriter, r *http.Request, templatePath st
 
 func AllPosts(w http.ResponseWriter, r *http.Request) {
 	if len(r.URL.Query()) > 0 {
-		renderFilteredPosts(w, r, "Frontend/index.html")
+		renderFilteredPosts(w, r, "templates/index.html")
 	} else {
-		renderPostsWithPageData(w, r, "Frontend/index.html", "")
+		renderPostsWithPageData(w, r, "templates/index.html", "")
 	}
 }
 
 func MinecraftPosts(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/minecraft.html", "minecraft")
+	renderPostsWithPageData(w, r, "templates/minecraft.html", "minecraft")
 }
 
 func SoulsPosts(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/souls.html", "souls games")
+	renderPostsWithPageData(w, r, "templates/souls.html", "souls games")
 }
 
 func OnlinePosts(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/online.html", "online games")
+	renderPostsWithPageData(w, r, "templates/online.html", "online games")
 }
 
 func StoryPosts(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/story.html", "story games")
+	renderPostsWithPageData(w, r, "templates/story.html", "story games")
 }
 
 func GeneralPosts(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/general.html", "general")
+	renderPostsWithPageData(w, r, "templates/general.html", "general")
 }
 
 func AboutPage(w http.ResponseWriter, r *http.Request) {
-	renderPostsWithPageData(w, r, "Frontend/about.html", "")
+	renderPostsWithPageData(w, r, "templates/about.html", "")
 }

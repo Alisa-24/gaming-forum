@@ -14,7 +14,7 @@ func ProfileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl, err := template.ParseFiles("Frontend/profile.html")
+	tmpl, err := template.ParseFiles("templates/profile.html")
 	if err != nil {
 		errors.InternalServerError(w, r, "Error loading template: "+err.Error())
 		return

@@ -14,7 +14,7 @@ var categories = []string{"minecraft", "online games", "souls games", "general",
 
 // PostHandler handles GET and POST requests for creating posts
 func PostHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("Frontend/createpost.html")
+	tmpl, err := template.ParseFiles("templates/createpost.html")
 	if err != nil {
 		errors.InternalServerError(w, r, "Error loading template: "+err.Error())
 		return

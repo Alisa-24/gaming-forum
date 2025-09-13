@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - GameHub Forum</title>
+    <link rel="stylesheet" href="/static/about.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Left side - Logo and categories -->
+            <div class="nav-left">
+                <a href="/homePage" class="logo">
+                    🎮 GameHub
+                </a>
+                
+                <div class="nav-categories">
+                    <a href="/homePage" class="nav-btn home-btn">All Posts</a>
+                    <a href="/category/general" class="nav-btn category-btn">💬 General</a>
+                    <a href="/category/online" class="nav-btn category-btn">🌐 Online</a>
+                    <a href="/category/story" class="nav-btn category-btn">📖 Story</a>
+                    <a href="/category/souls" class="nav-btn category-btn">⚔️ Souls</a>
+                    <a href="/category/minecraft" class="nav-btn category-btn">⛏️ Minecraft</a>
+                    <a href="/about" class="nav-btn category-btn active">ℹ️ About</a>
+                </div>
+            </div>
+            
+            <!-- Right side - Profile and Logout only -->
+            <div class="nav-right">
+                {{if .UserID}}
+                    <!-- Logged in user - only profile and logout -->
+                    <a href="/profile?id={{.UserID}}" class="create-btn">👤</a>
+                    <form method="POST" action="/logout" class="logout-form">
+                        <button type="submit" class="logout-btn">🚪 Logout</button>
+                    </form>
+                {{else}}
+                    <!-- Guest user -->
+                    <a href="/register" class="create-btn">📝 Register</a>
+                    <a href="/login" class="logout-btn">🔐 Login</a>
+                {{end}}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Header -->
+            <div class="content-header">
+                <h1 class="page-title">About GameHub</h1>
+                <p class="page-subtitle">Meet the team and learn about our gaming community platform</p>
+            </div>
+
+            <!-- Team & About Section -->
+            <div class="about-section">
+                <div class="about-header">
+                    <h2>🚀 Built for Reboot01</h2>
+                    <p>Meet the team behind GameHub - your ultimate gaming community platform</p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">H</div>
+                        <h3>Hussain Hameed</h3>
+                        <p class="team-role">Frontend Developer</p>
+                        <p class="team-desc">Worked on the frontend design and user interface of the gaming forum.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">A</div>
+                        <h3>Ali Isa</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-desc">Developed login, register, and post handler functionality.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">H</div>
+                        <h3>Hussain Alnasser</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-desc">Implemented likes and comments handlers for user interactions.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">E</div>
+                        <h3>Ebrahim</h3>
+                        <p class="team-role">Database Developer</p>
+                        <p class="team-desc">Created and managed the SQL database structure and queries.</p>
+                    </div>
+                </div>
+
+                <div class="forum-info">
+                    <div class="info-card">
+                        <h3>🎮 About GameHub</h3>
+                        <p>
+                            GameHub is a specialized gaming forum built as part of the Reboot01 program. 
+                            We've created a space where gamers can share strategies, discuss their favorite titles, 
+                            and connect with fellow players across multiple gaming categories.
+                        </p>
+                        <div class="features">
+                            <span class="feature">⚔️ Souls Games</span>
+                            <span class="feature">📖 Story Games</span>
+                            <span class="feature">⛏️ Minecraft</span>
+                            <span class="feature">💬 General Discussion</span>
+                            <span class="feature">🌐 Online Games</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

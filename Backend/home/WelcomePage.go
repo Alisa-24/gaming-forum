@@ -28,7 +28,7 @@ func WelcomePage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Guest → show welcome page
-	tmpl, err := template.ParseFiles("Frontend/welcome.html")
+	tmpl, err := template.ParseFiles("templates/welcome.html")
 	if err != nil {
 		http.Error(w, "Error loading template", http.StatusInternalServerError)
 		return

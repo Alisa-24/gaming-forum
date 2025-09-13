@@ -14,7 +14,7 @@ import (
 // RegisterHandler handles user registration
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	dbConn := db.DB
-	tmpl, err := template.ParseFiles("Frontend/register.html")
+	tmpl, err := template.ParseFiles("templates/register.html")
 	if err != nil {
 		errors.InternalServerError(w, r, "Error loading template: "+err.Error())
 		return

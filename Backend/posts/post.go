@@ -64,7 +64,7 @@ func ShowPost(w http.ResponseWriter, r *http.Request, postID int) {
 		return
 	}
 
-	tmpl, err := template.ParseFiles("Frontend/post.html")
+	tmpl, err := template.ParseFiles("templates/post.html")
 	if err != nil {
 		errors.InternalServerError(w, r, fmt.Sprintf("Template parsing error: %v", err))
 		return

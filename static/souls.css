@@ -551,6 +551,31 @@ body::after {
     padding: 0;
 }
 
+/* No posts section */
+.no-posts {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, 
+        rgba(26, 26, 26, 0.8) 0%, 
+        rgba(51, 34, 17, 0.6) 50%, 
+        rgba(102, 68, 34, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(139, 69, 19, 0.4);
+    border-radius: 15px;
+}
+
+.no-posts h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.no-posts p {
+    color: #d4af37;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .nav-container {

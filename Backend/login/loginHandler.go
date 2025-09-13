@@ -14,7 +14,7 @@ const sessionDuration = 24 * time.Hour
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	dbConn := db.DB
-	tmpl, err := template.ParseFiles("Frontend/login.html")
+	tmpl, err := template.ParseFiles("templates/login.html")
 	if err != nil {
 		errors.InternalServerError(w, r, "Error loading template: "+err.Error())
 		return

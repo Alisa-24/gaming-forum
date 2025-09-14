@@ -17,7 +17,6 @@ func main() {
 		fmt.Println("Failed to connect to the database. Exiting.")
 		return
 	}
-	db.InitCategories()
 
 	mux := http.NewServeMux()
 

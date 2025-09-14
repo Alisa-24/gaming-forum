@@ -2,7 +2,6 @@ package login
 
 import (
 	db "forum/Backend/DB"
-	"log"
 	"net/http"
 )
 
@@ -30,7 +29,6 @@ func GetSessionFromRequest(r *http.Request) (*Session, error) {
 	record, err := db.GetSessionByToken(db.DB, cookie.Value)
 	if err != nil {
 		// Log DB error but return a guest session to avoid nil-pointer panics in callers.
-		log.Println("GetSessionFromRequest: DB error:", err)
 		return &Session{
 			Token:    "",
 			UserID:   nil,

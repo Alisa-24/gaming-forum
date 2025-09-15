@@ -1,17 +1,5 @@
 # 🎮 Gaming Forum
 
-## 📸 Screenshots
-
-### 🏠 Homepage
-![Homepage](homepage.png)
-
-### 📝 Post Page
-![Post Page](post.png)
-
-### 👤 Profile Page
-![Profile Page](profile.png)
-
-
 ## 📖 Project Overview
 A web-based forum for gamers to discuss various game genres, share posts, and interact with each other.  
 The platform allows players to connect through posts, comments, likes, and private profiles — all styled with a galaxy theme, gaming-inspired theme.
